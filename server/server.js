@@ -114,6 +114,8 @@ let currentFin = 0, currentAd = 0, currentReq = 0, currentSA = 0, currentDoc = 0
         message: token
       });
       console.log(finance.head);
+      console.log("Current Number \n\n");
+      console.log(currentFin);
     });
     // when the client emits 'add user', this listens and executes
     socket.on('add user', (username) => {
