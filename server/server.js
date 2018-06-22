@@ -111,7 +111,7 @@ let currentFin = 0, currentAd = 0, currentReq = 0, currentSA = 0, currentDoc = 0
       return item;
     }
     
-    remove = function(item) {
+    remove(item) {
       if(!item) return undefined;
     
       if(this.head == item) this.head = item.next;  // removing head
