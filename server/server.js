@@ -59,13 +59,7 @@
     });
   });
 
-  setInterval(() => io.emit('newMessage', () => {
-    // we tell the client to execute 'new message'
-    socket.broadcast.emit('new message', {
-      username: socket.username,
-      message: new Date().toTimeString()
-    });
-  }), 1000);
+
 
 
 
