@@ -12,7 +12,9 @@
   
     
   // Chatroom
-  
+  const departments = ["finance","admissions","registration","student affairs", "documentation"];
+  let finance = [], admissions = [], registration = [], studentAffairs = [], documentation = [];
+
   var numUsers = 0;
   
   io.on('connection', (socket) => {
@@ -28,6 +30,12 @@
       });
     });
   
+    socket.on('finance', (data) => {
+      // we tell the client to execute 'new message'
+      io.sockets[socket.id].emit('finance', {
+        message: 12345
+      });
+    });
     // when the client emits 'add user', this listens and executes
     socket.on('add user', (username) => {
       if (addedUser) return;
