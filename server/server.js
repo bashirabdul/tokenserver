@@ -4,6 +4,7 @@
   var path = require('path');
   var server = require('http').createServer(app);
   const io = require('socket.io')(server);
+  var Queue = require('queue.js');
   var port = process.env.PORT || 3000;
   
   server.listen(port, () => {
@@ -13,8 +14,8 @@
     
   // Chatroom
   const departments = ["finance","admissions","registration","student affairs", "documentation"];
-  let finance = [], admissions = [], registration = [], studentAffairs = [], documentation = [];
-
+  let finance = new Queue(), admissions = new Queue(), registration = new Queue(), studentAffairs = new Queue(), documentation = new Queue();
+let currentFin = 0, currentAd = 0, currentReq = 0, currentSA = 0, currentDoc = 0; 
   var numUsers = 0;
   
   io.on('connection', (socket) => {
@@ -32,9 +33,12 @@
   
     socket.on('finance', (data) => {
       // we tell the client to execute 'new message'
+      var token  = "F" + (1000 + currentFin);
+      finance.enqueue({"token" : token, "attended" : false})
       io.of('/').sockets[socket.id].emit('finance', {
-        message: 12345
+        message: token
       });
+      console.log(finance.peek());
     });
     // when the client emits 'add user', this listens and executes
     socket.on('add user', (username) => {
