@@ -10,7 +10,7 @@
     console.log('Server listening at port %d', port);
   });
   
-    
+     
   // Chatroom
   const departments = ["finance","admissions","registration","student affairs", "documentation"];
   let finance = new Queue(), admissions = new Queue(), registration = new Queue(), studentAffairs = new Queue(), documentation = new Queue();
