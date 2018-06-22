@@ -32,7 +32,7 @@
   
     socket.on('finance', (data) => {
       // we tell the client to execute 'new message'
-      io..of('/').sockets[socket.id].emit('finance', {
+      io.of('/').sockets[socket.id].emit('finance', {
         message: 12345
       });
     });
