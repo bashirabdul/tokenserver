@@ -107,6 +107,7 @@ let currentFin = 0, currentAd = 0, currentReq = 0, currentSA = 0, currentDoc = 0
   
     socket.on('finance', (data) => {
       // we tell the client to execute 'new message'
+      currentFin++;
       var token  = "F" + (1000 + currentFin);
       finance.push({"token" : token, "attended" : false})
       io.of('/').sockets[socket.id].emit('finance', {
