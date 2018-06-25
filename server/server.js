@@ -30,6 +30,19 @@ let currentFin = 0, currentAd = 0, currentReq = 0, currentSA = 0, currentDoc = 0
       });
     });
   
+    socket.on('admissions', (data) => {
+      // we tell the client to execute 'new message'
+      currentAd+= 1;
+      var token  = "F" + (1000 + currentAd);
+      finance.push({"token" : token, "attended" : false})
+      io.of('/').sockets[socket.id].emit('admissions', {
+        message: token
+      });
+      console.log(admissions);
+      console.log("Current Number of Admission tokens\n\n");
+      console.log(currentAd);
+    });
+
     socket.on('finance', (data) => {
       // we tell the client to execute 'new message'
       currentFin+= 1;
@@ -41,6 +54,19 @@ let currentFin = 0, currentAd = 0, currentReq = 0, currentSA = 0, currentDoc = 0
       console.log(finance);
       console.log("Current Number \n\n");
       console.log(currentFin);
+    });
+
+    socket.on('getfinance', (data) => {
+      // we tell the client to execute 'new message'
+      var object = [];
+      finance.forEach((element,index) => {
+        object.push({"token" : element.token, "timeleft" : index * 300000 })
+      });
+      socket.broadcast.emit('getfinance', {
+        message: object
+      });
+      console.log(object);
+  
     });
     // when the client emits 'add user', this listens and executes
     socket.on('add user', (username) => {

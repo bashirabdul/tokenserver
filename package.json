@@ -12,6 +12,7 @@
   "author": "Bashir Abdulazeez",
   "license": "ISC",
   "dependencies": {
+    "bulma-accordion": "^2.0.0",
     "express": "4.16.3",
     "queue.js": "^0.1.3",
     "socket.io": "2.1.1"
