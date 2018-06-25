@@ -60,7 +60,7 @@ let currentFin = 0, currentAd = 0, currentReq = 0, currentSA = 0, currentDoc = 0
       finance.forEach((element,index) => {
         object.push({"token" : element.token, "timeleft" : index * 300000 })
       });
-      socket.broadcast.emit('getfinance', {
+      io.of('/').sockets[socket.id].emit('getfinance', {
         message: object
       });
       console.log(object);
