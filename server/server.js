@@ -51,9 +51,7 @@ let currentFin = 0, currentAd = 0, currentReq = 0, currentSA = 0, currentDoc = 0
       io.of('/').sockets[socket.id].emit('finance', {
         message: token
       });
-      console.log(finance);
-      console.log("Current Number \n\n");
-      console.log(currentFin);
+
     });
 
     socket.on('getfinance', (data) => {
