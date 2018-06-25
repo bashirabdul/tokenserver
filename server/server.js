@@ -49,7 +49,8 @@ let currentFin = 0, currentAd = 0, currentReq = 0, currentSA = 0, currentDoc = 0
       var token  = "F" + (1000 + currentFin);
       finance.push({"token" : token, "attended" : false})
       io.of('/').sockets[socket.id].emit('finance', {
-        message: token
+        message: token,
+        time: 300000 * finance.length
       });
 
     });
