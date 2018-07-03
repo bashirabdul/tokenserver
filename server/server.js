@@ -50,7 +50,9 @@ let currentFin = 0, currentAd = 0, currentReq = 0, currentSA = 0, currentDoc = 0
       
       
       io.of('/').sockets[socket.id].emit('admissions', {
-        message: token
+        user: user, 
+        message: token,
+        time: 300000 * admissions.length
       });
       console.log(admissions);
       console.log("Current Number of Admission tokens\n\n");
@@ -77,6 +79,7 @@ let currentFin = 0, currentAd = 0, currentReq = 0, currentSA = 0, currentDoc = 0
       }
     
       io.of('/').sockets[socket.id].emit('finance', {
+        user: user, 
         message: token,
         time: 300000 * finance.length
       });
