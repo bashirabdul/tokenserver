@@ -54,6 +54,8 @@ let currentFin = 0, currentAd = 0, currentReq = 0, currentSA = 0, currentDoc = 0
 
     socket.on('finance', (data) => {
       // we tell the client to execute 'new message'
+      var user = data.username;
+
       currentFin+= 1;
       var token  = "F" + (1000 + currentFin);
       finance.forEach((element,index) => {
