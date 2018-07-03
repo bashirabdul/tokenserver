@@ -100,6 +100,24 @@ let currentFin = 0, currentAd = 0, currentReq = 0, currentSA = 0, currentDoc = 0
       console.log(object);
   
     });
+
+    socket.on('currfinance', (data) => {
+      var user = data.username;
+      // we tell the client to execute 'new message'
+      var i = 0;
+      var object = 
+      finance.find((element,index) => {
+        i = index;
+        return element.user == user;
+      });
+      if(object != null || object != empty){
+      io.of('/').sockets[socket.id].emit('getfinance', {
+        message: {"user" : object.user, "token" : object.token, "timeleft" : i * 300000 }
+      });
+    }
+      console.log(object);
+  
+    });
     // when the client emits 'add user', this listens and executes
     socket.on('add user', (username) => {
       if (addedUser) return;
