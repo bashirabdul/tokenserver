@@ -85,7 +85,7 @@ let currentFin = 0, currentAd = 0, currentReq = 0, currentSA = 0, currentDoc = 0
       // we tell the client to execute 'new message'
       var object = [];
       finance.forEach((element,index) => {
-        object.push({"token" : element.token, "timeleft" : index * 300000 })
+        object.push({"user" : element.user, "token" : element.token, "timeleft" : index * 300000 })
       });
       io.of('/').sockets[socket.id].emit('getfinance', {
         message: object
