@@ -80,7 +80,7 @@ let currentFin = 0, currentAd = 0, currentReq = 0, currentSA = 0, currentDoc = 0
     
       io.of('/').sockets[socket.id].emit('finance', {
         "user": user, 
-        "message": token,
+        "token": token,
         "time": 300000 * finance.length
       });
 
