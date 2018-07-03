@@ -33,8 +33,7 @@ let currentFin = 0, currentAd = 0, currentReq = 0, currentSA = 0, currentDoc = 0
     socket.on('admissions', (data) => {
       // we tell the client to execute 'new message'
       var user = data.username;
-      currentAd+= 1;
-      var token  = "A" + (1000 + currentAd);
+    
 
       var found = admissions.find(function(element) {
         if(element.user === user){
@@ -44,6 +43,8 @@ let currentFin = 0, currentAd = 0, currentReq = 0, currentSA = 0, currentDoc = 0
       });
 
       if(!found){
+        currentAd+= 1;
+        var token  = "A" + (1000 + currentAd);
         admissions.push({"user": user, "token" : token, "attended" : false})
       }
       
@@ -60,8 +61,7 @@ let currentFin = 0, currentAd = 0, currentReq = 0, currentSA = 0, currentDoc = 0
       // we tell the client to execute 'new message'
       var user = data.username;
 
-      currentFin+= 1;
-      var token  = "F" + (1000 + currentFin);
+     
 
       var found = finance.find(function(element) {
        if(element.user === user){
@@ -71,6 +71,8 @@ let currentFin = 0, currentAd = 0, currentReq = 0, currentSA = 0, currentDoc = 0
       });
 
       if(!found){
+        currentFin+= 1;
+        var token  = "F" + (1000 + currentFin);
         finance.push({"user": user, "token" : token, "attended" : false})
       }
     
