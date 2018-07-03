@@ -32,9 +32,18 @@ let currentFin = 0, currentAd = 0, currentReq = 0, currentSA = 0, currentDoc = 0
   
     socket.on('admissions', (data) => {
       // we tell the client to execute 'new message'
+      var user = data.username;
       currentAd+= 1;
-      var token  = "F" + (1000 + currentAd);
-      finance.push({"token" : token, "attended" : false})
+      var token  = "A" + (1000 + currentAd);
+      admissions.forEach((element,index) => {
+        if(element.user == user){
+          break;
+        }
+        if(index == admissions.length){
+          admissions.push({"user": user, "token" : token, "attended" : false})
+        }
+      });
+      
       io.of('/').sockets[socket.id].emit('admissions', {
         message: token
       });
@@ -47,7 +56,14 @@ let currentFin = 0, currentAd = 0, currentReq = 0, currentSA = 0, currentDoc = 0
       // we tell the client to execute 'new message'
       currentFin+= 1;
       var token  = "F" + (1000 + currentFin);
-      finance.push({"token" : token, "attended" : false})
+      finance.forEach((element,index) => {
+        if(element.user == user){
+          break;
+        }
+        if(index == finance.length){
+          finance.push({"user": user, "token" : token, "attended" : false})
+        }
+      });
       io.of('/').sockets[socket.id].emit('finance', {
         message: token,
         time: 300000 * finance.length
