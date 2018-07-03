@@ -37,7 +37,10 @@ let currentFin = 0, currentAd = 0, currentReq = 0, currentSA = 0, currentDoc = 0
       var token  = "A" + (1000 + currentAd);
 
       var found = admissions.find(function(element) {
-        return element.user === user;
+        if(element.user === user){
+          return true;
+         }
+          return false ;
       });
 
       if(!found){
@@ -61,7 +64,10 @@ let currentFin = 0, currentAd = 0, currentReq = 0, currentSA = 0, currentDoc = 0
       var token  = "F" + (1000 + currentFin);
 
       var found = finance.find(function(element) {
-        return element.user === user;
+       if(element.user === user){
+        return true;
+       }
+        return false ;
       });
 
       if(!found){
